@@ -1,12 +1,15 @@
 from models.Book import Book
 from main import db
 from flask import Blueprint, request, jsonify
+from schemas.BookSchema import books_schema
 books = Blueprint("books", __name__, url_prefix="/books")
 
 @books.route("/", methods=["GET"])
 def book_index():
     #Return all books
-    pass
+    books = Book.query.all()
+    serialised_data = books_schema.dump(books)
+    return jsonify(serialised_data)
 
 # @books.route("/", methods=["POST"])
 # def book_create():
