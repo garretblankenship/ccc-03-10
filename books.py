@@ -1,6 +1,6 @@
 from database import cursor, connection
 from flask import Blueprint, request, jsonify
-books = Blueprint("books", __name__, url_prefix="books")
+books = Blueprint("books", __name__, url_prefix="/books")
 
 @books.route("/", methods=["GET"])
 def book_index():
